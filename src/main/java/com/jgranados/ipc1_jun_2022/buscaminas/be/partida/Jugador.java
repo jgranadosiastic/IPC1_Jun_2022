@@ -11,9 +11,8 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public String getNombre() {
+    public String obtenerNombre() {
         return nombre;
     }
-    
     
 }

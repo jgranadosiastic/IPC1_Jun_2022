@@ -7,7 +7,9 @@ package com.jgranados.ipc1_jun_2022.buscaminas.fe;
 
 import com.jgranados.ipc1_jun_2022.buscaminas.be.partida.Jugador;
 import com.jgranados.ipc1_jun_2022.buscaminas.be.partida.Partida;
+import com.jgranados.ipc1_jun_2022.buscaminas.be.resultados.ManejadorResultados;
 import com.jgranados.ipc1_jun_2022.buscaminas.be.tablero.Tablero;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,12 +19,34 @@ public class BuscaminasFrame extends javax.swing.JFrame {
     
     private Partida partidaEnCurso;
     private Tablero tableroEnUso;
+    private ManejadorResultados manejadorResultados;
 
     /**
      * Creates new form BuscaminasFrame
      */
     public BuscaminasFrame() {
         initComponents();
+        manejadorResultados = new ManejadorResultados();
+    }
+    
+    public void actualizarDatosJugadores() {
+        nombreLbl.setText(partidaEnCurso.obtenerJugadorEnTurno().obtenerNombre());
+    }
+    
+    public void actualizarDatosTurno() {
+        turnoLbl.setText("" + partidaEnCurso.obtenerTurno());
+    }
+    
+    public void reportarVictoria(Jugador ganador) {
+        JOptionPane.showMessageDialog(this, "El ganador es: " + ganador.obtenerNombre());
+        limpiarTablero();
+        limpiarTextosPartida();
+    }
+    
+    public void reportarEmpate() {
+        JOptionPane.showMessageDialog(this, "Se ha finalizado en un empte");
+        limpiarTablero();
+        limpiarTextosPartida();
     }
 
     /**
@@ -67,6 +91,11 @@ public class BuscaminasFrame extends javax.swing.JFrame {
         jMenu1.add(nuevoJuegoBtn);
 
         resultadosBtn.setText("Resultados");
+        resultadosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultadosBtnActionPerformed(evt);
+            }
+        });
         jMenu1.add(resultadosBtn);
 
         jMenuBar1.add(jMenu1);
@@ -114,35 +143,43 @@ public class BuscaminasFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevoJuegoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJuegoBtnActionPerformed
-        PedirNombreSDialog pedirNombresDialog = new PedirNombreSDialog(this);
+        PedirNombresDialog pedirNombresDialog = new PedirNombresDialog(this);
         pedirNombresDialog.setVisible(true);
         Jugador jugadorA = new Jugador(pedirNombresDialog.darNombreA());
         Jugador jugadorB = new Jugador(pedirNombresDialog.darNombreB());
         
-        partidaEnCurso = new Partida(jugadorA, jugadorB, this);
+        partidaEnCurso = new Partida(jugadorA, jugadorB, this, manejadorResultados);
+        tableroEnUso = partidaEnCurso.obtenerTableroEnUso();
         mostrarTablero();
         actualizarDatosJugadores();
         actualizarDatosTurno();
         
     }//GEN-LAST:event_nuevoJuegoBtnActionPerformed
 
+    private void resultadosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadosBtnActionPerformed
+        ResultadosDialog resultados = new ResultadosDialog(this, manejadorResultados.obtenerListadoResultados());
+        resultados.setVisible(true);
+    }//GEN-LAST:event_resultadosBtnActionPerformed
+
     private void mostrarTablero() {
         for (int i = 0; i < Tablero.FILAS; i++) {
             for (int j = 0; j < Tablero.COLUMNAS; j++) {
-                tableroPnl.add(partidaEnCurso.obtenerTableroEnUso().obtenerCasillas()[i][j]);
+                tableroPnl.add(tableroEnUso.obtenerCasillas()[i][j]);
             }
-            
         }
         tableroPnl.validate();
         tableroPnl.repaint();
     }
     
-    public void actualizarDatosJugadores() {
-        nombreLbl.setText(partidaEnCurso.obtenerJugadorEnTurno().getNombre());
+    private void limpiarTablero() {
+        tableroPnl.removeAll();
+        tableroPnl.validate();
+        tableroPnl.repaint();
     }
     
-    public void actualizarDatosTurno() {
-        turnoLbl.setText("" + partidaEnCurso.obtenerTurno());
+    private void limpiarTextosPartida() {
+        turnoLbl.setText("");
+        nombreLbl.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

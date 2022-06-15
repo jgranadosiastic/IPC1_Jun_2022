@@ -5,19 +5,19 @@
  */
 package com.jgranados.ipc1_jun_2022.buscaminas.fe;
 
-import com.jgranados.ipc1_jun_2022.guessanumber.fe.*;
-
 /**
  *
  * @author jose
  */
-public class PedirNombreSDialog extends javax.swing.JDialog {
+public class PedirNombresDialog extends javax.swing.JDialog {
+
     private String nombreA;
     private String nombreB;
+
     /**
      * Creates new form PedirNombreDialog
      */
-    public PedirNombreSDialog(java.awt.Frame parent) {
+    public PedirNombresDialog(java.awt.Frame parent) {
         super(parent, true);
         initComponents();
     }
@@ -56,23 +56,22 @@ public class PedirNombreSDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(aceptarBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(nombreATxt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 133, Short.MAX_VALUE))
+                                .addComponent(nombreATxt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(nombreBTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 133, Short.MAX_VALUE)))))
+                                .addComponent(nombreBTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 133, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -103,7 +102,7 @@ public class PedirNombreSDialog extends javax.swing.JDialog {
     public String darNombreA() {
         return nombreA;
     }
-    
+
     public String darNombreB() {
         return nombreB;
     }
