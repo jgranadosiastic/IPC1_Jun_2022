@@ -44,4 +44,14 @@ public class Alumno {
         
         return total / 3;
     }
+
+    public String getCui() {
+        return cui;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
+    
 }

@@ -30,7 +30,7 @@
                     
                     <archive>
                         <manifest>
-                            <mainClass>com.jgranados.ipc1_jun_2022.ParImpar</mainClass>
+                            <mainClass>com.jgranados.ipc1_jun_2022.archivos.text.ArchivosTextoMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
