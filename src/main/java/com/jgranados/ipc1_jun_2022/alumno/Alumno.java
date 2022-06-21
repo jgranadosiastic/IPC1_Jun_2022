@@ -1,10 +1,14 @@
 package com.jgranados.ipc1_jun_2022.alumno;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jose
  */
-public class Alumno {
+public class Alumno implements Serializable {
+    
+    private static final long serialVersionUID = 121L;
 
     private String cui;
     private String nombre;
@@ -51,6 +55,10 @@ public class Alumno {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public void setCui(String cui) {
+        this.cui = cui;
     }
     
     
