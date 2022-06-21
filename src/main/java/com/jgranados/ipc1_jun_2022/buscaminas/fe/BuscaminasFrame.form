@@ -71,7 +71,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="turnoLbl" max="32767" attributes="0"/>
+                          <Component id="turnoLbl" pref="208" max="32767" attributes="0"/>
                           <Component id="nombreLbl" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -96,7 +96,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tableroPnl" max="32767" attributes="0"/>
+              <Component id="tableroPnl" pref="298" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

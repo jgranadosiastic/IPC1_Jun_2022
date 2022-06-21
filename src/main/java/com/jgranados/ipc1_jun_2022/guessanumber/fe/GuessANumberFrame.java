@@ -14,11 +14,12 @@ import javax.swing.JOptionPane;
  * @author jose
  */
 public class GuessANumberFrame extends javax.swing.JFrame {
+
     private IA ia;
     private Jugador jugador;
     private Jugador[] jugadores = new Jugador[10];
     private int contadorJugadores = 0;
-    
+
     /**
      * Creates new form GuessANumberFrame
      */
@@ -160,15 +161,21 @@ public class GuessANumberFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_iniciarJuegoBtnActionPerformed
 
     private void validarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarBtnActionPerformed
-        int entrada = Integer.parseInt(entradaTxt.getText());
-        if (ia.validarEntrada(entrada, jugador)) {
-            JOptionPane.showMessageDialog(this, "Adivinaste!! tu punteo es de " + jugador.obtenerPunteo());
-            actualizarDatosJugador();
-        } else {
-            JOptionPane.showMessageDialog(this, "Fallaste!!");
-            verificarSiPerdio();
+
+        try {
+            int entrada = Integer.parseInt(entradaTxt.getText());
+
+            if (ia.validarEntrada(entrada, jugador)) {
+                JOptionPane.showMessageDialog(this, "Adivinaste!! tu punteo es de " + jugador.obtenerPunteo());
+                actualizarDatosJugador();
+            } else {
+                JOptionPane.showMessageDialog(this, "Fallaste!!");
+                verificarSiPerdio();
+            }
+            actualizarIntentos();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese un numero entero.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        actualizarIntentos();
     }//GEN-LAST:event_validarBtnActionPerformed
 
     private void verPunteosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verPunteosBtnActionPerformed
@@ -180,11 +187,11 @@ public class GuessANumberFrame extends javax.swing.JFrame {
         punteoLbl.setText("" + jugador.obtenerPunteo());
         nombreLbl.setText(jugador.obtenerNombre());
     }
-    
+
     private void actualizarIntentos() {
         intentosLbl.setText("" + ia.obtenerIntentosRestantes());
     }
-    
+
     private void verificarSiPerdio() {
         if (!ia.sigueConVida()) {
             JOptionPane.showMessageDialog(this, "Ya perdiste!!");
@@ -192,7 +199,7 @@ public class GuessANumberFrame extends javax.swing.JFrame {
             limpiarDatosJugador();
         }
     }
-    
+
     private void agregarJugadorAListado() {
         if (contadorJugadores >= 10) {
             contadorJugadores = 0;
@@ -200,12 +207,12 @@ public class GuessANumberFrame extends javax.swing.JFrame {
         jugadores[contadorJugadores] = jugador;
         contadorJugadores++;
     }
-    
+
     private void limpiarDatosJugador() {
         punteoLbl.setText("");
         nombreLbl.setText("");
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField entradaTxt;
     private javax.swing.JMenuItem iniciarJuegoBtn;
