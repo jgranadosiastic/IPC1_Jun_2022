@@ -47,6 +47,9 @@ public class TamagotchiFrame extends javax.swing.JInternalFrame {
         vidaLbl = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         estadoLbl = new javax.swing.JLabel();
+        alimentarBtn = new javax.swing.JButton();
+        curarBtn = new javax.swing.JButton();
+        limpiarBtn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(492, 253));
         setMinimumSize(new java.awt.Dimension(492, 253));
@@ -57,6 +60,33 @@ public class TamagotchiFrame extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Estado:");
 
+        alimentarBtn.setText("Alimentar");
+        alimentarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alimentarBtnActionPerformed(evt);
+            }
+        });
+
+        curarBtn.setText("Curar");
+        curarBtn.setMaximumSize(new java.awt.Dimension(97, 23));
+        curarBtn.setMinimumSize(new java.awt.Dimension(97, 23));
+        curarBtn.setPreferredSize(new java.awt.Dimension(97, 23));
+        curarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                curarBtnActionPerformed(evt);
+            }
+        });
+
+        limpiarBtn.setText("Limpiar");
+        limpiarBtn.setMaximumSize(new java.awt.Dimension(97, 23));
+        limpiarBtn.setMinimumSize(new java.awt.Dimension(97, 23));
+        limpiarBtn.setPreferredSize(new java.awt.Dimension(97, 23));
+        limpiarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,15 +95,24 @@ public class TamagotchiFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(imagenLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(vidaLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(estadoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(vidaLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(estadoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(alimentarBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(curarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(limpiarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -93,21 +132,40 @@ public class TamagotchiFrame extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(estadoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(alimentarBtn)
+                            .addComponent(curarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(limpiarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(imagenLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void alimentarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alimentarBtnActionPerformed
+        tamagotchi.alimentar();
+    }//GEN-LAST:event_alimentarBtnActionPerformed
+
+    private void curarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curarBtnActionPerformed
+        tamagotchi.curar();
+    }//GEN-LAST:event_curarBtnActionPerformed
+
+    private void limpiarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarBtnActionPerformed
+        tamagotchi.limpiar();
+    }//GEN-LAST:event_limpiarBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton alimentarBtn;
+    private javax.swing.JButton curarBtn;
     private javax.swing.JLabel estadoLbl;
     private javax.swing.JLabel imagenLbl;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton limpiarBtn;
     private javax.swing.JLabel nombreLbl;
     private javax.swing.JLabel vidaLbl;
     // End of variables declaration//GEN-END:variables

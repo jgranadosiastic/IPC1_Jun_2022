@@ -133,13 +133,18 @@ public class TamagotchiApp extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void nuevoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoBtnActionPerformed
-        Tamagotchi nuevo = new Tamagotchi("nombre xxx", "onix.png");
+        PedirDatosDialog dialog = new PedirDatosDialog(this);
+        dialog.setVisible(true);
+        agregarTamagotchi(dialog.darNombre(), dialog.darImagen());
+    }//GEN-LAST:event_nuevoBtnActionPerformed
+
+    private void agregarTamagotchi(String nombre, String imagen) {
+        Tamagotchi nuevo = new Tamagotchi(nombre, imagen);
         this.desktopPanel.add(nuevo.obtenerFrontend());
         nuevo.obtenerFrontend().setVisible(true);
         nuevo.start();
-        
-    }//GEN-LAST:event_nuevoBtnActionPerformed
-
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentsMenuItem;

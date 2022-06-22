@@ -5,6 +5,7 @@
 package com.jgranados.ipc1_jun_2022.hilos.tamagotchi;
 
 import com.jgranados.ipc1_jun_2022.hilos.tamagotchi.fe.TamagotchiFrame;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +21,7 @@ public class Tamagotchi extends Thread {
     private static final String NORMAL_TEXT = "Normal";
     private static final String MUERTO_TEXT = "Muerto";
     private static final int VIDA = 100;
+    private static final int CAMBIO_ESTADO = 10;
     
     private String image;
     private boolean hambriento;
@@ -30,6 +32,7 @@ public class Tamagotchi extends Thread {
     private int vidaMaxima = VIDA;
     private TamagotchiFrame frontend;
     private String nombre;
+    private int contadorCambioEstado = 0;
 
     public Tamagotchi(String nombre, String image) {
         this.image = image;
@@ -43,9 +46,10 @@ public class Tamagotchi extends Thread {
             vidaActual--;
             try {
                 sleep(1000);
+                definirEstado();
                 frontend.actualizarData();
             } catch (InterruptedException ex) {
-                Logger.getLogger(Tamagotchi.class.getName()).log(Level.SEVERE, null, ex);
+                // liogica para manejar esta exception
             }
         }
     }
@@ -55,9 +59,7 @@ public class Tamagotchi extends Thread {
     }
     
     public String obtenerEstadoTexto() {
-        if (hambriento) {
-            return HAMBRIENTO_TEXT;
-        } else if (sucio) {
+        if (sucio) {
             return SUCIO_TEXT;
         } else if (enfermo) {
             return ENFERMO_TEXT;
@@ -80,4 +82,29 @@ public class Tamagotchi extends Thread {
         return vidaActual > 0;
     }
     
+    public void alimentar() {
+        vidaActual = VIDA;
+    }
+    
+    public void curar() {
+        enfermo = false;
+    }
+    
+    public void limpiar() {
+        sucio = false;
+    }
+    
+    private void definirEstado() {
+        if (!sucio && !enfermo && contadorCambioEstado >= CAMBIO_ESTADO) {
+            Random random = new Random();
+            int valor = random.nextInt(100);
+            if (valor <= 4) {
+                enfermo = true;
+            } else if (valor > 4 && valor <= 9) {
+                sucio = true;
+            }
+            contadorCambioEstado = 0;
+        }
+        contadorCambioEstado++;
+    }
 }
